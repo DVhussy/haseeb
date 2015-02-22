@@ -1,0 +1,118 @@
+﻿@model MvcApplication5.Models.User
+<script src="~/Scripts/jquery-2.1.3.js"></script>
+<script>
+
+    $(function () {
+
+        $.ajax({
+            url: '@Url.Action("getSurveys/"+@Model.Id, "Survey")',
+            type: "GET",
+        success: function (result) {
+            //alert();
+            $.each(result, function (i, sur) {
+                $("#deleteSur").on('click', function () {
+                    var x;
+                    if (confirm("Are you sure You want to delete!") == true) {
+                        var url = '@Url.Action("About", "Home")';
+                       
+                    } else {
+
+                    }
+                });
+                $('#myTable').append($("<tr><td>" + (i=i+1) + "</td><td>" + sur.Title + "</td><td>" + sur.Res + "<td></td></td><td><a href =/Survey/EditPage/" + sur.id + ">Edit</a><br/><a href =/Survey/DeletePage/" + sur.id + ">Delete</a></td></tr>"));
+
+                });
+        },
+        error:function(res)
+        {
+            alert();
+        }
+
+        });
+        $('#searchTitle').keyup(function()
+        {
+            var vv = this.value.toString();
+
+            $.ajax(
+                {
+
+                    url: '@Url.Action("Search", "Survey")',
+                    data: JSON.stringify({ expression: vv }),
+                    type: 'POST',
+                    dataType: 'JSON',
+                    contentType: 'application/json; charset=utf-8',
+
+                    success: function (result) {
+                        $("#deleteSur").on('click', function () {
+                            var x;
+                            if (confirm("Are you sure You want to delete!") == true) {
+                                $.ajax(
+                                {
+                                    url: '@Url.Action("About","Home")',
+                                    type: 'GET',
+                                    success: function () {
+
+                                    }
+                                });
+                            } else {
+
+                            }
+                        });
+                        var q = $('<tr class="active"><td width="5%">#</td><td width="70%">Title</td><td width="5%">Responces</td><td width="10%">Analyze</td><td width="10%">Action</td></tr>');
+                        $('#myTable tr').remove();
+                        $('#myTable').append(q);
+                        $.each(result, function (i, sur) {
+
+                            $('#myTable').append($("<tr><td>" + (i = i + 1) + "</td><td>" + sur.Title1 + "</td><td>" + sur.Responces1 + "<td></td></td><td><a href =/Survey/EditPage/" + sur.Id + ">Edit</a><br/><a href =/Survey/DeletePage/" + sur.id + ">Delete</a></td></tr>"));
+
+                        });
+                    },
+                })
+        });
+    });
+    $(function () {
+
+    });
+</script>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-5">
+        <ul class="nav nav-tabs">
+            <li role="presentation"><a href="/Survey/AddPoll/@Model.Id">Add Survey</a></li>
+            <li role="presentation"><a href="#">Graphs</a></li>
+            <li role="presentation"><input id="searchTitle" class="form-control" type="search" placeholder="Enter Title" style="margin-left:100px;" /></li>
+            
+        </ul>
+        <br />
+        <br />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <table class="table table-bordered" id="myTable">
+            <tr class="active">
+                <td width="5%">#</td>
+                <td width="70%">Title</td>
+                <td width="5%">Responces</td>
+                <td width="10%">Analyze</td>
+                <td width="10%">Action</td>
+            </tr>
+           
+        </table>
+    </div>
+</div>
+<script>
+    function showup()
+    {
+        alert();
+    }
+    $('#deleteSur').click(function () {
+        alert();
+    })
+    $('#deleteSur').attr('onClick',showup);
+</script>

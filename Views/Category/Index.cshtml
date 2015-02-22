@@ -1,0 +1,43 @@
+﻿@model List<MvcApplication5.Models.Category>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    int i = 1;
+}
+
+<div class="row">
+    <div class="col-md-5"></div>
+    <div class="col-md-3">
+        <form method="post" action="/Category/AddCategory">
+            <input  type="text" name="CName" placeholder="Enter Category"/>
+            <input class="label label-primary" type="submit" value="Add Category" />
+        </form>
+        <br />
+        <br />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <h1 class="text-success">Category List</h1>
+        <table class="table table-bordered" id="myTable">
+            <tr class="active">
+                <td width="5%">#</td>
+                <td width="50%">Caterogry</td>
+                <td width="20%"> Options</td>
+            </tr>
+
+            @foreach (var v in Model)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>@v.CName</td>
+
+                    <td><a href="/Category/DeleteCategory/@v.Id">Delete</a>
+                    </td>
+                </tr>
+                i = i + 1;
+            }
+        </table>
+    </div>
+</div>

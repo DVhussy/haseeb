@@ -1,0 +1,234 @@
+﻿@{
+    ViewBag.Title = "SignUp";
+}
+<script>
+    $(function () {
+
+        function checUser() {
+           
+            $.ajax(
+                {
+                    url: '@Url.Action("checkUserName", "Account")',
+                    type: "POST",
+                    data: {name:$("#UserName").val()},
+                    success: function (result) {
+                        if (result == "null")
+                        {
+                            $("#userNameCheck").addClass("form-group has-error");
+                            $("#showError").removeAttr("hidden");
+                            $("#showError").text("Error User Name must be enter");
+                            return 1;
+                        }
+                        else if (result == "n")
+                        {
+                            $("#userNameCheck").removeClass("form-group has-error");
+                            $("#showError").attr("hidden", "hidden");
+                            $("#showError").text("User Name Already Exist");
+                            return 0;
+                        }
+                        else if (result) {
+                            $("#userNameCheck").addClass("form-group has-error");
+                            $("#showError").removeAttr("hidden");
+                            $("#showError").text("User Name Already Exist");
+                            return 1;
+                        }
+                        
+                    }
+                }
+            )};
+        function checkEmail() {
+            var v = $("#Email").val();
+            $.ajax(
+                {
+                    url: '@Url.Action("checkEmail", "Account")',
+                    type: "POST",
+                    data: { name: v },
+                    success: function (result) {
+                        if (result == "null") {
+                            $("#emailCheck").addClass("form-group has-error");
+                            $("#showError1").removeAttr("hidden");
+                            $("#showError1").text("Error Email must be enter");
+                            return 1;
+                        }
+                        else if (result == "n") {
+                            $("#emailCheck").removeClass("form-group has-error");
+                            $("#showError1").attr("hidden", "hidden");
+                            $("#showError1").text("Email Already Exist");
+                            return 0;
+                        }
+                        else if (result) {
+                            $("#emailCheck").addClass("form-group has-error");
+                            $("#showError1").removeAttr("hidden");
+                            $("#showError1").text("Email Already Exist");
+                            return 1;
+                        }
+                    }
+                 });
+        };
+        function lastNameCheck()
+        {
+            if ($("#lastName").val() == "") {
+                $("#secondN").addClass("form-group has-error");
+                $("#showError5").removeAttr("hidden");
+                return 1;
+            }
+            else {
+                $("#secondN").removeClass("form-group has-error");
+                $("#showError5").attr("hidden", "hidden");
+                return 0;
+            }
+        }
+        function namecheck()
+        {
+            if ($("#name").val() == "") {
+                $("#firstN").addClass("form-group has-error");
+                $("#showError4").removeAttr("hidden");
+                return 1;
+            }
+            
+            else {
+                $("#firstN").removeClass("form-group has-error");
+                $("#showError4").attr("hidden", "hidden");
+                return 0;
+            }
+        }
+        $("#userPasswordC").keyup(function () {
+            if ($("#password").val() != $("#userPasswordC").val()) {
+                $("#passwordCheck").addClass("form-group has-error");
+                $("#showError2").removeAttr("hidden");
+                $("#showError2").text("Error password is not same");
+                return 1;
+            }
+            else {
+                $("#passwordCheck").removeClass("form-group has-error");
+                $("#showError2").attr("hidden", "hidden");
+                $("#showError2").text("Email Already Exist");
+                return 0;
+            }
+        });
+        function passwordCheck()
+        {
+            if($("#password").val()=="" ||$("#userPasswordC").val()=="")
+            {
+                $("#passwordCheck").addClass("form-group has-error");
+                $("#showError2").removeAttr("hidden");
+                $("#showError2").text("Error password must be enter");
+                return 1;
+            }
+            if($("#password").val()!=$("#userPasswordC").val())
+            {
+                $("#passwordCheck").addClass("form-group has-error");
+                $("#showError2").removeAttr("hidden");
+                $("#showError2").text("Error password is not same");
+                return 1;
+            }
+            else
+            {
+                $("#passwordCheck").removeClass("form-group has-error");
+                $("#showError2").attr("hidden", "hidden");
+                $("#showError2").text("Email Already Exist");
+            }
+        }
+        $("#Email").focus(checUser);
+        $("#password").focus(checkEmail);
+        $('#submit').click(function () {
+            var aa = 0;
+            if ($("#Email").val() == "")
+                aa = 1;
+            var bb = 0;
+            if ($("#UserName").val() == "")
+                bb = 1;
+            var v =checUser();
+            var v1=checkEmail();
+            var v2 = passwordCheck();
+            var v3 = namecheck();
+            var v4 = lastNameCheck();
+            if (v2 == 1 ||v1==1||v==1||v3==1||v4==1||bb == 1 || aa ==1) {
+                $("form").submit(function (e) {
+                    e.preventDefault(e);
+                });
+            }
+            else
+                $("form").unbind('submit').submit();
+        });
+        
+    });
+</script>
+<form class="form-group" method="post" action="Signp">
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-4">
+            <div id="firstN">
+                <label class="col-sm-3 control-label">First Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="name" name="Name" placeholder="Enter your First Name">
+                </div>
+            </div>
+            <br />
+            <br />
+            <div id="secondN">
+                <label class="col-sm-3 control-label">Last Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter your Last Name">
+                </div>
+            </div>
+            <br />
+            <br />
+        </div>
+       <div class="col-md-3">
+        <label id="showError4" class="text-danger" hidden="hidden" style="margin-top:8px"> First Name Must be Enter</label>
+        <br />
+        <label id="showError5" class="text-danger" style="margin-top:25px" hidden="hidden">Last Name Must be Enter</label>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-4">
+            <div id="userNameCheck">
+                <label class="col-sm-3 control-label">User Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control has-error" id="UserName" name="UserName" placeholder="Enter your User Name">
+                </div>
+            </div>
+            <br />
+            <br />
+            <div id="emailCheck">
+                <label class="col-sm-3 control-label">Email ID</label>
+                <div class="col-sm-9">
+                    <input type="email" class="form-control" id="Email" name="Email" placeholder="Enter your Email ID">
+                </div>
+            </div>
+            <br />
+            <br />
+            <div id="passwordCheck">
+                <label class="col-sm-3 control-label">Password</label>
+                <div class="col-sm-9">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter your Password">
+                </div>
+
+                <br />
+                <br />
+                <label class="col-sm-3 control-label">Password</label>
+                <div class="col-sm-9">
+                    <input type="password" class="form-control" id="userPasswordC" name="userPassword" placeholder="Enter your Password">
+                </div>
+            </div>
+            <br />
+            <br />
+            <button type="submit" class="btn btn-success" id="submit" style="margin-left:400px">Submit</button>
+            
+        </div>
+        
+        <div class="col-md-3">
+            <label id="showError" class="text-danger" hidden="hidden" style="margin-top:8px"> User Name Already Exist</label>
+            <br />
+            <label id="showError1" class="text-danger" style="margin-top:25px" hidden="hidden">Email Address Already Register</label>
+            <label id="showError2" class="text-danger" style="margin-top:45px" hidden="hidden">Password Not same</label>
+        </div>
+         
+    </div>
+</form>

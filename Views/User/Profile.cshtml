@@ -1,0 +1,20 @@
+﻿@model MvcApplication5.Models.User
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-5">
+        @using (Html.BeginForm("FileUpload", "User", FormMethod.Post,new { enctype = "multipart/form-data" }))
+        {
+            <label for="file">Upload Image:</label>
+        <img src="~/images/profile/@Model.Profile_Picture_Path " width="360" height="460"/>
+            <input type="file" name="file" id="file" style="width: 100%;" accept="image/*"/>
+            <input type="submit" value="Upload" class="submit" />
+        }
+    </div>
+</div>

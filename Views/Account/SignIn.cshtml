@@ -1,0 +1,29 @@
+﻿@model MvcApplication5.Models.User
+@{
+    ViewBag.Title = "SignIn";
+}
+<div>
+    <p hidden="">You entered invalid username/password</p>
+</div>
+<div class="row">
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-5">
+        <form class="form-group" method="post" action="/Account/Login">
+            @Html.ValidationSummary(true)
+            <label class="col-sm-5 control-label">User Name/Email:</label>
+            <div class="col-sm-7">
+               
+                <input type="text" class="form-control" id="Name" name="UserName" placeholder="Enter your User Name">
+                @Html.ValidationMessageFor(m=>m.UserName)
+            </div>
+            <label class="col-sm-5 control-label">Password</label>
+            <div class="col-sm-7">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your Password">
+                @Html.ValidationMessageFor(m=>m.password)
+            </div>
+            <button type="submit" class="btn btn-success" id="submit">Submit</button> 
+        </form>
+    </div>
+</div>

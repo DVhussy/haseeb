@@ -1,0 +1,42 @@
+﻿@model List<MvcApplication5.Models.Picture>
+@{
+    ViewBag.Title = "Pictures";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script src="~/Scripts/jquery.fancybox.pack.js"></script>
+<script src="~/Scripts/jquery.fancybox-buttons.js"></script>
+<script src="~/Scripts/jquery.fancybox-media.js"></script>
+<script src="~/Scripts/jquery.fancybox-thumbs.js"></script>
+<link href="~/Content/jquery.fancybox.css" rel="stylesheet" />
+<script>
+    $(document).ready(function () {
+
+        /* This is basic - uses default settings */
+
+        $("a#single_image").fancybox();
+
+        
+
+        /* Apply fancybox to multiple items */
+
+        $("a.grouped_elements").fancybox({
+            'transitionIn': 'elastic',
+            'transitionOut': 'elastic',
+            'speedIn': 600,
+            'speedOut': 200,
+            'overlayShow': false
+        });
+    });
+</script>
+<form method="post" action="/Home/addPicture" enctype="multipart/form-data">
+    <input type="file" name="file" id="file" />
+    <input type="submit" class="btn btn-success"  value="upload"/>
+</form>
+@foreach (var v in Model)
+{
+    <a class="grouped_elements" rel="group1" href="@Url.Content("~/images/profile/"+v.PictureName)"><img src="@Url.Content("~/images/profile/"+v.PictureName)" style="width:200px;height:200px;" alt="" /></a>
+}
+
+
+

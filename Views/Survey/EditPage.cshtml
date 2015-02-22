@@ -1,0 +1,38 @@
+﻿@model MvcApplication5.Models.User
+@{
+    ViewBag.Title = "EditPage";
+    var v1= (TempData["myData"] as List<MvcApplication5.Models.SurveryQuestion>);
+}
+<script src="~/Scripts/jquery-2.1.3.js"></script>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <form class="form-group" method="post" action="/Survey/EditP/@Model.Id">
+            <button class="btn btn-default dropdown-toggle" type="submit" id="addItem" data-toggle="dropdown" aria-expanded="true">
+                Save Changes
+            </button>
+            </form>
+    </div>
+</div>
+    <script>
+
+        $(function () {
+            $.ajax({
+                url: '@Url.Action("getQuestion/" + @Model.Id, "Survey")',
+                type: "GET",
+                success: function (result) {
+                    $.each(result, function (i, sur) {
+                        var y = $("<label class=col-sm-3 control-label>Question Title</label><div class=col-sm-9><input type=text value='" + sur.Question + "'class=form-control id='Name" + i + "' name='Name" + i + "' placeholder='Enter Your Question' style='margin-left:15px'></div><br /><br /><div class='row'><br /><div class='col-md-4'></div><div class='col-md-8'><input type='text' value='" + sur.answer[0] + "'class='form-control' id='option" + i + "1' name='option" + i + "1' placeholder='option 1'><br /><input type='text' class='form-control' value='" + sur.answer[1] + "'id='option" + i + "2' name='option" + i + "2' placeholder='option 2'><br /><input type='text' value='" + sur.answer[2] + "'class='form-control'value='" + sur.answer[2] + "' id='option" + i + "3' name='option" + i + "3' placeholder='option 3'><br /><input type='text'value='" + sur.answer[3] + "' class='form-control' id='option" + i + "4' name='option" + i + "4' placeholder='option 4'><br /><input type='text' value='" + sur.answer[4] + "'class='form-control' id='option" + i + "5' name='option" + i + "5' placeholder='option 5'><br /></div></div>");
+                        $('#addItem').before(y);
+                        i++;
+                        var k = $("<input name=check value=" + i + " hidden=hidden />");
+                        $('#addItem').before(k);
+                    });
+                },
+                error: function (res) {
+                    alert();
+                }
+
+            });
+        });
+    </script>

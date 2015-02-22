@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/bootstrapcss")
+    <link href="~/Content/monkey.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-2.1.3.js"></script>
+    <script src="~/Scripts/jquery-ui-1.11.2.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse" role="navigation" id="myTilte">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="~/Admin/Index"><strong>DV Site</strong> </a>
+        </div>
+        <ul class="nav nav-pills ">
+            <li role="presentation">@Html.ActionLink("Home", "Index", "Admin")</li>
+            <li>@Html.ActionLink("Users", "Index", "Admin")</li>
+            <li>@Html.ActionLink("Admin", "Admins", "Admin")</li>
+            <li role="presentation"><a href="/Admin/AddAdmin">Add Admin</a></li>
+            <li role="presentation"><a href="/Admin/addUser">Add User</a></li>
+            <li role="presentation"><a href="/Category/Index">Category</a></li>
+            <li class="navbar-right">
+                <section id="login" class="navbar navbar-right" style="margin-right:40px">
+                    @Html.Partial("_PartialLayout1");
+                </section>
+            </li>
+        </ul>
+
+    </nav>
+    @RenderBody()
+    <div id="ta"></div>
+    <div class="base-footer  anon-footer navbar-inverse" id="ft">
+        <div class="inner-ft">
+
+            <div class="ft-c">
+                <ul class="link-list">
+                    <li id="FB_lnk_4" class="link-list-label SL_swap">
+                        <a href="http://www.facebook.com/pages/SurveyMonkey/65225997627" target="_blank">
+                            Community:
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://developer.surveymonkey.com/" target="_blank">
+                            Developers
+                        </a>
+                    </li>
+                    <li id="FB_lnk_5" class="SL_swap">
+                        <a href="http://www.facebook.com/pages/SurveyMonkey/65225997627" target="_blank" title="Follow us on Facebook">
+                            Facebook
+                        </a>
+                    </li>
+                    <li id="Twitter_lnk_3" class="SL_swap">
+                        <a href="http://twitter.com/#%21/SurveyMonkey" target="_blank" title="Follow us on Twitter">
+                            Twitter
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.linkedin.com/company/362798" target="_blank" title="Follow us on LinkedIn">
+                            LinkedIn
+                        </a>
+                    </li>
+                    <li id="Intl_blog_1" class="SL_swap">
+                        <a href="http://www.surveymonkey.com/blog/en/" target="_blank" title="Subscribe to our blog">
+                            Our Blog
+                        </a>
+                    </li>
+                    <li id="footer_gplus" class="google-plus SL_swap">
+                        <a href="https://plus.google.com/+surveymonkey/posts" target="_blank" title="Follow us on Google +">
+                            Google+
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.youtube.com/surveymonkey" target="_blank" title="Follow us on YouTube">
+                            YouTube
+                        </a>
+                    </li>
+                </ul>
+                <ul class="link-list">
+                    <li class="link-list-label">
+                        <a href="https://www.surveymonkey.com/mp/aboutus/">
+                            About Us:
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.surveymonkey.com/mp/aboutus/management/">
+                            Management Team
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.surveymonkey.com/mp/aboutus/directors/">
+                            Board of Directors
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.surveymonkey.com/mp/aboutus/partners/">
+                            Partners
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.surveymonkey.com/mp/aboutus/newsroom/">
+                            Newsroom
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.surveymonkey.com/mp/aboutus/office-locations/">
+                            Office Locations
+                        </a>
+                    </li>
+                    <li id="Jobs_1" class="SL_swap">
+                        <a href="https://www.surveymonkey.com/mp/jobs/" target="_blank">
+                            Jobs
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.surveymonkey.com/mp/sitemap/">
+                            Sitemap
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://help.surveymonkey.com/?l=en_US" target="_blank">
+                            Help
+                        </a>
+                    </li>
+                </ul>
+                <ul class="link-list">
+                    <li class="link-list-label">
+                        <a href="https://www.surveymonkey.com/mp/policy/">
+                            Policies:
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.surveymonkey.com/mp/policy/terms-of-use/">
+                            Terms of Use
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.surveymonkey.com/mp/policy/privacy-policy/">
+                            Privacy Policy
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.surveymonkey.com/mp/policy/anti-spam/">
+                            Anti-Spam Policy
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.surveymonkey.com/mp/policy/security/">
+                            Security Statement
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.surveymonkey.com/optin.aspx">
+                            Email Opt-In
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="grid ft-bottom">
+                <div class="col grid-u-2-5">
+
+                    <span class="copy">
+                        Copyright © 2011-2015 DV
+                    </span>
+                </div>
+                <div class="col grid-u-3-5">
+                    <ul class="security">
+                        <li>
+                            <a href="http://www.truste.org/ivalidate.php?url=www.surveymonkey.com&amp;sealid=102" target="_blank" class="link-truste" title="Click to verify TRUSTe accreditation.">
+                                Truste
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.bbb.org/oregon/business-reviews/market-survey-companies/surveymonkeycom-in-portland-or-22010900" target="_blank" class="link-bbonline" title="Click to verify BBB accreditation and to see a BBB report.">
+                                BBOnline
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://www.surveymonkey.com/help/tutorial/2/" title="RampWEB Accessibility Certification" class="link-rampweb" id="footer_hlRamp">
+                                Ramp Web
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://sealinfo.verisign.com/splash?form_file=fdf/splash.fdf&amp;dn=WWW.SURVEYMONKEY.COM&amp;lang=en" target="_blank" class="link-verisign" title="Click to Verify - This site has chosen a VeriSign SSL Certificate to improve Web site security">
+                                Verisign
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="hidden hidden-objects">
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <script src="SurveyMonkey%20%20Free%20online%20survey%20software%20&amp;%20questionnaire%20tool_files/mobile-first-bundle-min.js"></script>
+
+
+
+
+
+
+
+
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-56526-1']);
+        _gaq.push(['_setDomainName', '.surveymonkey.com']);
+        _gaq.push(['_addIgnoredRef', 'www.surveymonkey.com']);
+
+
+        _gaq.push(['_setCustomVar', 4, 'Package Type', '1', 1]);
+        _gaq.push(['_setCustomVar', 5, 'User ID', '1', 1]);
+
+        _gaq.push(['_setSessionCookieTimeout', 7200000]);
+        _gaq.push(['_setCampaignCookieTimeout', 2592000000]);
+        _gaq.push(['_trackPageview']);
+        _gaq.push(['_trackPageLoadTime']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        /* ]]> */
+    </script>
+
+
+
+
+    <script type="text/javascript">
+        var data_layer = {
+
+            user_id: "1",
+            package_id: "1",
+            country_code: "PK",
+            language_id: "en",
+
+            sip: "1",
+            current_datetime: "2015-01-04 17:40:47"
+        }
+    </script>
+
+    <script src="SurveyMonkey%20%20Free%20online%20survey%20software%20&amp;%20questionnaire%20tool_files/tag.js">
+        { site: "ZbjtK2N" }
+    </script>
+
+
+
+
+    <script src="SurveyMonkey%20%20Free%20online%20survey%20software%20&amp;%20questionnaire%20tool_files/nr-476.js"></script>
+    <script src="SurveyMonkey%20%20Free%20online%20survey%20software%20&amp;%20questionnaire%20tool_files/750e9545e9" type="text/javascript"></script>
+
+</body>
+</html>

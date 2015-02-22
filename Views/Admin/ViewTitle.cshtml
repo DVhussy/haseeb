@@ -1,0 +1,29 @@
+﻿@model MvcApplication5.Models.QuesAns
+@{
+    ViewBag.Title = "ViewTitle";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<table>
+    <tr>
+        <td>Qestion</td>
+        <td>Ans 1</td>
+        <td>Ans 2</td>
+        <td>Ans 3</td>
+        <td>Ans 4</td>
+        <td>Ans 5</td>
+
+    </tr>
+    @foreach (var v in Model.question)
+    {
+        <tr>
+            <td>@v.Question</td>
+            @foreach (var k in Model.answer)
+            {
+                foreach(var a in k)
+                {
+                    <td>@a.Answer</td>
+                }
+            }
+        </tr>
+    }
+</table>

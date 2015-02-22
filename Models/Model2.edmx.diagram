@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="427e5e0a67e8426a87273ed7bbba67c7" Name="Diagram1">
+        <EntityTypeShape EntityType="Database1Model1.PAnswer" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model1.Poll" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model1.Title" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="Database1Model1.FK_PAnswers_ToPoll" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model1.FK_Polls_ToUser" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Database1Model1.Responce" Width="1.5" PointX="3" PointY="5.5" />
+        <AssociationConnector Association="Database1Model1.FK_Responce_To_Titl" />
+        <EntityTypeShape EntityType="Database1Model1.Admin" Width="1.5" PointX="7.5" PointY="3.875" />
+        <EntityTypeShape EntityType="Database1Model1.Category" Width="1.5" PointX="5.375" PointY="4.625" />
+        <AssociationConnector Association="Database1Model1.FK_Titles_To_Catergory" />
+        <EntityTypeShape EntityType="Database1Model1.User" Width="1.5" PointX="0.5" PointY="1.25" />
+        <AssociationConnector Association="Database1Model1.FK_Responce_To_User" />
+        <AssociationConnector Association="Database1Model1.FK_Titles_To_Users" />
+        <EntityTypeShape EntityType="Database1Model1.Picture" Width="1.5" PointX="5.375" PointY="7.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

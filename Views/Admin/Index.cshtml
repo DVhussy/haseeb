@@ -1,0 +1,76 @@
+﻿@model List<MvcApplication5.Models.User>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    int i = 1;
+}
+<script>
+    $(function () {
+    
+    $('#searchTitle').keyup(function () {
+        var vv = this.value.toString();
+
+        $.ajax(
+            {
+
+                url: '@Url.Action("SearchUser", "Admin")',
+                data: JSON.stringify({ expression: vv }),
+                type: 'POST',
+                dataType: 'JSON',
+                contentType: 'application/json; charset=utf-8',
+
+                success: function (result) {
+                    var q = $('<tr class="active"><td width="5%">#</td><td width="50%">Name</td><td width="15%">Email</td><td width="20%">User Name</td><td width="10%">Option</td></tr>');
+                    $('#myTable tr').remove();
+                    $('#myTable').append(q);
+                    $.each(result, function (i, sur) {
+
+                        $('#myTable').append($("<tr><td>" + (i = i + 1) + "</td><td><a href =/Admin/Titles/" + sur.Id + ">" + sur.Name + "</a> </td><td>" + sur.Email + "</td><td>" + sur.UserName + "</td><td><a href =/Admin/EditUser/" + sur.Id + ">Edit</a><br/><a href =/Admin/DeleteUser/" + sur.Id + ">Delete</a></td></tr>"));
+
+                    });
+                },
+                error:function(err)
+                { alert();}
+            })
+    });
+    });
+</script>
+<div class="row">
+    <div class="col-md-5"></div>
+    <div class="col-md-3">
+        <ul>
+            <li role="presentation"><input id="searchTitle" class="form-control" type="search" placeholder="Enter User Name" style="margin-left:100px;" /></li>
+        </ul>
+        <br />
+        <br />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <h1 class="text-success">Users List</h1>
+        <table class="table table-bordered" id="myTable">
+            <tr class="active">
+                <td width="5%">#</td>
+                <td width="50%">Name</td>
+                <td width="15%">Email</td>
+                <td width="20%">User Name</td>
+                <td width="20%"> Options</td>
+            </tr>
+            
+            @foreach(var v in Model)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td><a href="/Admin/Titles/@v.Id" class="success">@v.Name</a></td>
+                    <td>@v.Email</td>
+                    <td>@v.UserName</td>
+                    <td><a href="/Admin/EditUser/@v.Id">Edit</a>
+                        <a href="/Admin/DeleteUser/@v.Id">Delete</a>
+                    </td>
+                </tr>
+                i =i+1;
+            }
+        </table>
+    </div>
+</div>

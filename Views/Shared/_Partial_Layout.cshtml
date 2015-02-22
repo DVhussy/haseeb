@@ -1,0 +1,18 @@
+﻿@if (Session["UserId"]!=null)
+{
+    <text>
+        
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+        {
+           <a href="/User/Profile"><label class="label label-primary" style="font-size:13px;height:170px;">@Session["UserName"].ToString()</label></a>
+            @Html.AntiForgeryToken()
+            <a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-warning">Log off</a>
+        }
+    </text>
+}
+else
+{
+    
+    <a class="btn btn-success" href="/Account/SignUp">Sign Up</a>
+  <a class="btn btn-warning" href="/Account/SignIn">Sign In</a>
+}   

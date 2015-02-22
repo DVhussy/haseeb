@@ -1,0 +1,73 @@
+﻿@model MvcApplication5.Models.User
+@{
+    ViewBag.Title = "EditUser";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+@using (Html.BeginForm("editU", "Admin", FormMethod.Post))
+{ 
+    <div class="row">
+        <div class="col-md-3">
+            <input  name="Id"value="@Model.Id" hidden="hidden"/>
+        </div>
+        <div class="col-md-4">
+            <div id="firstN">
+                <label class="col-sm-3 control-label">First Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="name" name="Name" placeholder="Enter your First Name" value="@Model.Name"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <label id="showError4" class="text-danger" hidden="hidden" style="margin-top:8px"> First Name Must be Enter</label>
+           
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-4">
+            <div id="userNameCheck">
+                <label class="col-sm-3 control-label">User Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control has-error" id="UserName" name="UserName" placeholder="Enter your User Name" value="@Model.UserName"/>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div id="emailCheck">
+                <label class="col-sm-3 control-label">Email ID</label>
+                <div class="col-sm-9">
+                    <input type="email" class="form-control" id="Email" name="Email" placeholder="Enter your Email ID" value="@Model.Email"/>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div id="passwordCheck">
+                <label class="col-sm-3 control-label">Password</label>
+                <div class="col-sm-9">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter your Password" value="@Model.password">
+                </div>
+
+                <br />
+                <br />
+                <label class="col-sm-3 control-label">Password</label>
+                <div class="col-sm-9">
+                    <input type="password" class="form-control" id="userPasswordC" name="userPassword" placeholder="Enter your Password" value="@Model.password">
+                </div>
+            </div>
+            <br />
+            <br />
+            <button type="submit" class="btn btn-success" id="submit" style="margin-left:400px">Submit</button>
+
+        </div>
+
+        <div class="col-md-3">
+            <label id="showError" class="text-danger" hidden="hidden" style="margin-top:8px"> User Name Already Exist</label>
+            <br />
+            <label id="showError1" class="text-danger" style="margin-top:25px" hidden="hidden">Email Address Already Register</label>
+            <label id="showError2" class="text-danger" style="margin-top:45px" hidden="hidden">Password Not same</label>
+        </div>
+
+    </div>
+}

@@ -1,0 +1,116 @@
+﻿@model MvcApplication5.Models.Title
+@{
+    ViewBag.Title = "AddPoll";
+}
+@Html.ValidationSummary(true)
+<link href="~/Content/AddPoll.css" rel="stylesheet" />
+<form class="form-group" method="post" action="/Survey/AddP/@ViewBag.y">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-5">
+            <input type="text" class="form-control" id="title" name="title" placeholder="Untitled Form"/>
+            <br />
+             <select class="dropdown dropdown-header"name="myList" >
+                @foreach (var v in ViewBag.x as List<MvcApplication5.Models.Category>)
+                {
+                    <option class="dropdown  dropdown-toggle">@v.CName</option>
+                }
+            </select>
+
+            
+            <br />
+            <br />
+            <br />
+            <br />
+            <label class="col-sm-3 control-label">Question Title</label>
+
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="Name" name="Name" placeholder="Enter Your Question" style="margin-left:15px">
+                
+            </div>
+            <br />
+            <br />
+            <div class="row">
+                <br />
+                <div class="col-md-4"></div>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="option1" name="option1" placeholder="option 1">
+                    <br />
+                    <input type="text" class="form-control" id="option2" name="option2" placeholder="option 2">
+                    <br />
+                    <input type="text" class="form-control" id="option3" name="option3" placeholder="option 3"><br />
+                    <input type="text" class="form-control" id="option4" name="option4" placeholder="option 4"><br />
+                    <input type="text" class="form-control" id="option5" name="option5" placeholder="option 5"><br />
+                </div>
+            </div>
+            <button class="btn btn-default dropdown-toggle" type="button" id="addItem" data-toggle="dropdown" aria-expanded="true">
+                Add Items
+                <span class="caret"></span>
+            </button>
+            <br />
+            <div class="row">
+                <div class="col-md-10"></div>
+                <div class="col-md-2">
+                    <input class="btn btn-primary dropdown-toggle" type="submit" id="submit"  value="Add Survey"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+ <script>
+        var v = document.getElementById('addItem');
+        v.onclick = function () {
+            //alert();
+        };
+        $(document).ready(function () {
+            var i = 1, o1 = 1;
+            function TitleCheck() {
+                if ($("#title").val() == "") {
+                    alert("You must Enter Title");
+                    return 1;
+                }
+                else {
+                    
+                    return 0;
+            }
+        }
+        function namecheck() {
+            if ($("#Name").val() == "") {
+                alert("You must Enter Name");
+                return 1;
+            }
+
+            else{
+                return 0;
+            }
+        }
+        function optionCheck() {
+            if ($("#option1").val() == "") {
+                alert("You must Enter At least one option");
+                return 1;
+            }
+
+            else{
+                return 0;
+            }
+        }
+        $('#submit').click(function () {
+            var v = TitleCheck();
+            var v1 = namecheck();
+            var v2 = optionCheck();
+            if (v2 == 1 || v1 == 1 || v == 1) {
+                $("form").submit(function (e) {
+                    e.preventDefault(e);
+                });
+            }
+        });
+            $('#addItem').click(function () {
+                var y = $("<label class=col-sm-3 control-label>Question Title</label><div class=col-sm-9><input type=text class=form-control id='Name" + i + "' name='Name" + i + "' placeholder='Enter Your Question' style='margin-left:15px'></div><br /><br /><div class='row'><br /><div class='col-md-4'></div><div class='col-md-8'><input type='text' class='form-control' id='option" + i + "1' name='option" + i + "1' placeholder='option 1'><br /><input type='text' class='form-control' id='option" + i + "2' name='option" + i + "2' placeholder='option 2'><br /><input type='text' class='form-control' id='option" + i + "3' name='option" + i + "3' placeholder='option 3'><br /><input type='text' class='form-control' id='option" + i + "4' name='option" + i + "4' placeholder='option 4'><br /><input type='text' class='form-control' id='option" + i + "5' name='option" + i + "5' placeholder='option 5'><br /></div></div>");
+                $('#addItem').before(y);
+                i++;
+                var k = $("<input name=check value=" + i + " hidden=hidden />");
+                $('#addItem').before(k);
+
+            });
+        })
+    </script>
